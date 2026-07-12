@@ -1,15 +1,36 @@
+import { use } from "react";
 import { Link } from "react-router";
+import { AuthContexts } from "../Contexts/AuthContexts/AuthContexts";
 
 const Register = () => {
+    const {createUser}=use(AuthContexts)
 
     const submitHendaler=(e)=>{
+
         e.preventDefault()
-        const email=e.target.email.value
-        const password=e.target.password.value
-        e.target.reset()
-        console.log("Registed",email,password);
+        const email=e.target.email.value;
+        const password=e.target.password.value;
+        console.log("Register",email,password);
+        createUser(email,password)
+        .then(result=>{
+            console.log(result.user);
+            e.target.reset()
+            
+        })
+        .catch(error=>{
+            console.log(error.message);
+        })
         
     }
+
+    // const submitHendaler=(e)=>{
+    //     e.preventDefault()
+    //     const email=e.target.email.value
+    //     const password=e.target.password.value
+    //     e.target.reset()
+    //     console.log("Registed",email,password);
+        
+    // }
 
     return (
         <div className="card bg-base-100 top-8 mx-auto w-full max-w-sm shrink-0 shadow-2xl">
