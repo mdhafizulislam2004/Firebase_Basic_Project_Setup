@@ -1,14 +1,34 @@
+import { use } from "react";
 import { Link } from "react-router";
+import { AuthContexts } from "../Contexts/AuthContexts/AuthContexts";
 
 const Login = () => {
-     const submitHendaler=(e)=>{
+
+    const{signinUser}=use(AuthContexts)
+
+    const submitHendaler=(e)=>{
         e.preventDefault()
         const email=e.target.email.value
         const password=e.target.password.value
-        e.target.reset()
-        console.log("Login",email,password);
-        
+
+        signinUser(email,password)
+        .then(result=>{
+            console.log(result.user);
+        })
+        .catch(error=>{
+            console.log(error.message);
+            
+        })
     }
+
+    //  const submitHendaler=(e)=>{
+    //     e.preventDefault()
+    //     const email=e.target.email.value
+    //     const password=e.target.password.value
+    //     e.target.reset()
+    //     console.log("Login",email,password);
+        
+    // }
 
     return (
         <div className="card bg-base-100 top-8 mx-auto w-full max-w-sm shrink-0 shadow-2xl">
