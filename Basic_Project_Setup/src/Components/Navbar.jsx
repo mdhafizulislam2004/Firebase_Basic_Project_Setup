@@ -1,6 +1,11 @@
+import { use } from "react";
 import { NavLink } from "react-router";
+import { AuthContexts } from "../Contexts/AuthContexts/AuthContexts";
 
 const Navbar = () => {
+    const authInfo=use(AuthContexts)
+    console.log(authInfo);
+    
     const link=<>
     <li className="m-2"><NavLink className={({isActive})=>isActive?"text-red-500":"text-black"} to="/">Home</NavLink></li>
     <li className="m-2"><NavLink className={({isActive})=>isActive?"text-red-500":"text-black"} to="/login">Login</NavLink></li>
