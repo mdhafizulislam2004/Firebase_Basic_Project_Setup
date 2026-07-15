@@ -6,12 +6,15 @@ import { useEffect, useState } from "react";
 const AuthProvider = ({children}) => {
 
     const[user,setUser]=useState(null)
+    const[loder,setLoder]=useState(true)
 
     const createUser=(email,password)=>{
+        setLoder(true)
         return createUserWithEmailAndPassword(auth,email,password)
     }
 
     const signinUser=(email,password)=>{
+        setLoder(true)
         return signInWithEmailAndPassword(auth,email,password)
     }
 
@@ -32,6 +35,7 @@ const AuthProvider = ({children}) => {
         const unsubscribe=onAuthStateChanged(auth,(currentUser)=>{
             console.log("Current User In Auth",currentUser);
             setUser(currentUser)
+            setLoder(false)
         })
         return ()=>{
             unsubscribe()
@@ -40,6 +44,7 @@ const AuthProvider = ({children}) => {
 
 
     const userInfo={
+        loder,
         user,
         createUser,
         signinUser,

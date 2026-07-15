@@ -21,9 +21,10 @@ const Navbar = () => {
     <li className="m-2"><NavLink className={({isActive})=>isActive?"text-red-500":"text-black"} to="/">Home</NavLink></li>
     <li className="m-2"><NavLink className={({isActive})=>isActive?"text-red-500":"text-black"} to="/login">Login</NavLink></li>
     <li className="m-2"><NavLink className={({isActive})=>isActive?"text-red-500":"text-black"} to="/register">Register</NavLink></li>
+    <li className="m-2"><NavLink className={({isActive})=>isActive?"text-red-500":"text-black"} to="/dashbord">Dashbord</NavLink></li>
     {
         user && <>
-        <NavLink className="m-2" to="/order">Order</NavLink>
+        <NavLink className="m-2" to="/orders">Order</NavLink>
         <NavLink className="m-2" to="/profile">Profile</NavLink>
         </>
     }
